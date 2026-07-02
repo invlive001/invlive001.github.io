@@ -245,6 +245,82 @@
     .ascent-line{animation:none;stroke-dashoffset:0;}
   }
 
+  /* ---------- pricing ---------- */
+  .price-tabs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+  }
+  .price-tab{
+    padding:10px 18px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--text-muted);
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .2s ease;
+    white-space:nowrap;
+  }
+  .price-tab:hover{border-color:var(--blue-light);color:var(--text);}
+  .price-tab.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+  .price-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .price-scroll{overflow-x:auto;}
+  table.price-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+    min-width:560px;
+  }
+  .price-table th{
+    text-align:left;
+    padding:16px 24px;
+    font-family:'Unbounded',sans-serif;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--text-dim);
+    background:var(--bg-alt);
+    border-bottom:1px solid var(--border);
+    white-space:nowrap;
+  }
+  .price-table td{
+    padding:14px 24px;
+    border-bottom:1px solid var(--border-soft);
+    color:var(--text-muted);
+    vertical-align:top;
+  }
+  .price-table td:first-child{color:var(--text);font-weight:500;}
+  .price-table tr:last-child td{border-bottom:none;}
+  .price-table tr:hover td{background:#12172a;}
+  .price-cell{color:var(--blue-light);font-weight:600;white-space:nowrap;}
+  .price-panel{display:none;}
+  .price-panel.active{display:block;}
+  .price-note{
+    margin-top:18px;
+    font-size:12.5px;
+    color:var(--text-dim);
+  }
+  .price-cta{
+    margin-top:32px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  @media (max-width:680px){
+    .price-table th, .price-table td{padding:12px 16px;}
+  }
+
   /* ---------- section headers ---------- */
   .section-head{
     max-width:640px;
@@ -594,6 +670,7 @@
       <a href="#services">Услуги</a>
       <a href="#route">Этапы</a>
       <a href="#cases">Кейсы</a>
+      <a href="#pricing">Прайс</a>
       <a href="#about">О нас</a>
       <a href="#contact">Контакты</a>
     </nav>
@@ -799,8 +876,179 @@
     </div>
   </section>
 
+  <!-- PRICING -->
+  <section class="pad bg-alt" id="pricing">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Прайс</div>
+        <h2>Стоимость по площадкам</h2>
+        <p>Полная стоимость услуг по каждой площадке. Итоговый пакет под ваш бизнес считаем индивидуально — с учётом ниши, числа филиалов и текущего рейтинга.</p>
+      </div>
+
+      <div class="price-tabs reveal">
+        <button class="price-tab active" data-tab="packages">Пакетные предложения</button>
+        <button class="price-tab" data-tab="reviews">Написание отзывов</button>
+        <button class="price-tab" data-tab="disputes">Обжалование негатива</button>
+        <button class="price-tab" data-tab="ratings">Публикация оценок</button>
+        <button class="price-tab" data-tab="setup">Оформление карточек</button>
+        <button class="price-tab" data-tab="clicks">Переходы на карте</button>
+        <button class="price-tab" data-tab="smm">SMM-ведение</button>
+      </div>
+
+      <div class="price-card reveal">
+
+        <div class="price-panel active" id="panel-packages">
+          <div class="price-scroll">
+            <table class="price-table">
+              <thead><tr><th>Площадка</th><th>Что входит в подписку</th><th>Подписка / 1 филиал</th></tr></thead>
+              <tbody>
+                <tr><td>Яндекс Карты</td><td>Публикация 10 отзывов, обжалование негатива</td><td class="price-cell">17 000 ₽/мес</td></tr>
+                <tr><td>2ГИС</td><td>Публикация 20 отзывов, обжалование негатива</td><td class="price-cell">9 000 ₽/мес</td></tr>
+                <tr><td>Фламп</td><td>Публикация 10 отзывов, обжалование негатива</td><td class="price-cell">9 000 ₽/мес</td></tr>
+                <tr><td>Авито</td><td>Публикация 5 отзывов, обжалование негатива</td><td class="price-cell">14 000 ₽/мес</td></tr>
+                <tr><td>Яндекс Еда</td><td>Публикация 10 отзывов</td><td class="price-cell">12 000 ₽/мес</td></tr>
+                <tr><td>Яндекс Недвижимость</td><td>Публикация 10 отзывов</td><td class="price-cell">12 000 ₽/мес</td></tr>
+                <tr><td>Яндекс Услуги</td><td>Публикация 10 отзывов</td><td class="price-cell">12 000 ₽/мес</td></tr>
+                <tr><td>Яндекс Вебмастер</td><td>Публикация 10 отзывов</td><td class="price-cell">12 000 ₽/мес</td></tr>
+                <tr><td>Яндекс Путешествия</td><td>Публикация 10 отзывов</td><td class="price-cell">12 000 ₽/мес</td></tr>
+                <tr><td>Сравни.ру</td><td>Публикация 10 отзывов</td><td class="price-cell">12 000 ₽/мес</td></tr>
+                <tr><td>Циан</td><td>Публикация 10 отзывов</td><td class="price-cell">12 000 ₽/мес</td></tr>
+                <tr><td>Google Карты</td><td>Публикация 10 отзывов</td><td class="price-cell">4 000 ₽/мес</td></tr>
+                <tr><td>ВКонтакте</td><td>Публикация 10 отзывов</td><td class="price-cell">5 000 ₽/мес</td></tr>
+                <tr><td>ZOON</td><td>Публикация 10 отзывов</td><td class="price-cell">5 000 ₽/мес</td></tr>
+                <tr><td>Отзовик</td><td>Публикация 5 отзывов</td><td class="price-cell">7 000 ₽/мес</td></tr>
+                <tr><td>HH.ru</td><td>Публикация 5 отзывов</td><td class="price-cell">6 000 ₽/мес</td></tr>
+                <tr><td>Островок</td><td>Публикация 5 отзывов</td><td class="price-cell">6 000 ₽/мес</td></tr>
+                <tr><td>Drom</td><td>Публикация 5 отзывов</td><td class="price-cell">6 000 ₽/мес</td></tr>
+                <tr><td>iRecommend</td><td>Публикация 5 отзывов, постоплата</td><td class="price-cell">6 000 ₽/мес</td></tr>
+                <tr><td>Tripadvisor</td><td>Публикация 5 отзывов</td><td class="price-cell">5 000 ₽/мес</td></tr>
+                <tr><td>Сбер Здоровье</td><td>Публикация 5 отзывов</td><td class="price-cell">5 000 ₽/мес</td></tr>
+                <tr><td>Докту</td><td>Публикация 5 отзывов</td><td class="price-cell">5 000 ₽/мес</td></tr>
+                <tr><td>Yell</td><td>Публикация 10 отзывов</td><td class="price-cell">3 000 ₽/мес</td></tr>
+                <tr><td>ПроДокторов</td><td>—</td><td class="price-cell">по запросу</td></tr>
+                <tr><td>Красота и Медицина</td><td>—</td><td class="price-cell">по запросу</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="price-panel" id="panel-reviews">
+          <div class="price-scroll">
+            <table class="price-table">
+              <thead><tr><th>Площадка</th><th>Несогласованный отзыв</th><th>Согласованный отзыв</th></tr></thead>
+              <tbody>
+                <tr><td>Яндекс Карты</td><td>1 300 ₽</td><td class="price-cell">1 600 ₽</td></tr>
+                <tr><td>2ГИС</td><td>250 ₽</td><td class="price-cell">350 ₽</td></tr>
+                <tr><td>Google Карты</td><td>450 ₽</td><td class="price-cell">850 ₽</td></tr>
+                <tr><td>Сравни.ру</td><td>1 300 ₽</td><td class="price-cell">1 600 ₽</td></tr>
+                <tr><td>HH.ru</td><td>1 300 ₽</td><td class="price-cell">1 600 ₽</td></tr>
+                <tr><td>Отзовик</td><td>1 500 ₽</td><td class="price-cell">2 000 ₽</td></tr>
+                <tr><td>iRecommend</td><td>1 300 ₽ (постоплата)</td><td class="price-cell">1 600 ₽ (постоплата)</td></tr>
+                <tr><td>ZOON</td><td>550 ₽</td><td class="price-cell">1 000 ₽</td></tr>
+                <tr><td>ВКонтакте</td><td>550 ₽</td><td class="price-cell">750 ₽</td></tr>
+                <tr><td>Tripadvisor</td><td>1 100 ₽</td><td class="price-cell">1 600 ₽</td></tr>
+                <tr><td>ПроДокторов</td><td>1 500 ₽</td><td class="price-cell">1 800 ₽</td></tr>
+                <tr><td>Сбер Здоровье</td><td>1 100 ₽</td><td class="price-cell">1 400 ₽</td></tr>
+                <tr><td>Докту</td><td>1 100 ₽</td><td class="price-cell">1 400 ₽</td></tr>
+                <tr><td>Красота и Медицина</td><td>650 ₽</td><td class="price-cell">900 ₽</td></tr>
+                <tr><td>Yell</td><td>350 ₽</td><td class="price-cell">550 ₽</td></tr>
+                <tr><td>Фламп</td><td>450 ₽</td><td class="price-cell">550 ₽</td></tr>
+                <tr><td>Островок</td><td>1 300 ₽</td><td class="price-cell">1 600 ₽</td></tr>
+                <tr><td>Циан · Риэлторы</td><td>1 300 ₽</td><td class="price-cell">1 600 ₽</td></tr>
+                <tr><td>Циан · Аренда квартир</td><td>1 300 ₽</td><td class="price-cell">1 600 ₽</td></tr>
+                <tr><td>Циан · ЖК</td><td>1 300 ₽ (постоплата)</td><td class="price-cell">1 600 ₽ (постоплата)</td></tr>
+                <tr><td>Drom</td><td>1 300 ₽</td><td class="price-cell">1 600 ₽</td></tr>
+                <tr><td>Авито</td><td>3 000 ₽ (постоплата)</td><td class="price-cell">3 000 ₽ (постоплата)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="price-note">Цена указана за 1 отзыв.</div>
+        </div>
+
+        <div class="price-panel" id="panel-disputes">
+          <div class="price-scroll">
+            <table class="price-table">
+              <thead><tr><th>Площадка</th><th>Подписка</th><th>За отзыв</th></tr></thead>
+              <tbody>
+                <tr><td>Яндекс Карты</td><td class="price-cell">5 500 ₽/мес</td><td>1 100 ₽</td></tr>
+                <tr><td>2ГИС</td><td class="price-cell">5 500 ₽/мес</td><td>1 000 ₽</td></tr>
+                <tr><td>Фламп</td><td class="price-cell">5 500 ₽/мес</td><td>1 100 ₽</td></tr>
+                <tr><td>Отзовик</td><td>—</td><td>1 700 ₽</td></tr>
+                <tr><td>HH.ru</td><td>—</td><td>2 000 ₽</td></tr>
+                <tr><td>ZOON</td><td>—</td><td>1 000 ₽</td></tr>
+                <tr><td>Удаление с гарантией (постоплата, любая площадка)</td><td>—</td><td>1 100 ₽</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="price-panel" id="panel-ratings">
+          <div class="price-scroll">
+            <table class="price-table">
+              <thead><tr><th>Площадка</th><th>За оценку</th></tr></thead>
+              <tbody>
+                <tr><td>Яндекс Карты</td><td class="price-cell">250 ₽</td></tr>
+                <tr><td>2ГИС</td><td class="price-cell">100 ₽</td></tr>
+                <tr><td>Google Карты</td><td class="price-cell">150 ₽</td></tr>
+                <tr><td>ZOON</td><td class="price-cell">250 ₽</td></tr>
+                <tr><td>Яндекс Услуги</td><td class="price-cell">250 ₽</td></tr>
+                <tr><td>Яндекс Недвижимость</td><td class="price-cell">250 ₽</td></tr>
+                <tr><td>Яндекс Путешествия</td><td class="price-cell">250 ₽</td></tr>
+                <tr><td>Яндекс Вебмастер</td><td class="price-cell">250 ₽</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="price-panel" id="panel-setup">
+          <div class="price-scroll">
+            <table class="price-table">
+              <thead><tr><th>Площадка</th><th>Первый месяц</th><th>Со 2-го месяца / продление</th></tr></thead>
+              <tbody>
+                <tr><td>Яндекс Карты</td><td class="price-cell">13 000 ₽/филиал</td><td>6 500 ₽/филиал</td></tr>
+                <tr><td>2ГИС</td><td class="price-cell">6 500 ₽/филиал</td><td>3 500 ₽/филиал</td></tr>
+                <tr><td>ZOON</td><td class="price-cell">4 000 ₽/филиал</td><td>2 000 ₽/филиал</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="price-note">Дополнительно: разработка ИИ-видео 12 секунд — 10 000 ₽/видео.</div>
+        </div>
+
+        <div class="price-panel" id="panel-clicks">
+          <div class="price-scroll">
+            <table class="price-table">
+              <thead><tr><th>Площадка</th><th>Пакет</th><th>Стоимость</th></tr></thead>
+              <tbody>
+                <tr><td>Яндекс Карты</td><td>500 переходов</td><td class="price-cell">6 300 ₽/пакет</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="price-panel" id="panel-smm">
+          <div class="price-scroll">
+            <table class="price-table">
+              <thead><tr><th>Каналы</th><th>Стоимость</th></tr></thead>
+              <tbody>
+                <tr><td>ВКонтакте</td><td class="price-cell">27 000 ₽/мес</td></tr>
+                <tr><td>ВКонтакте + Telegram</td><td class="price-cell">33 000 ₽/мес</td></tr>
+                <tr><td>ВКонтакте + Telegram + Дзен</td><td class="price-cell">38 000 ₽/мес</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="price-cta reveal">
+        <a href="#contact" class="btn btn-primary">Подобрать пакет для моего бизнеса</a>
+        <span style="color:var(--text-dim);font-size:13px;">Цены указаны без скидок за объём — при подключении нескольких площадок сделаем персональное предложение</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
-  <section class="pad bg-alt" id="about">
+  <section class="pad" id="about">
     <div class="wrap about-grid">
       <div class="about-copy reveal">
         <div class="eyebrow">О нас</div>
@@ -831,7 +1079,7 @@
           </div>
           <div>
             <span class="label">Telegram</span>
-            <a href="https://t.me/your_username" target="_blank" rel="noopener">@your_username</a>
+            <a href="https://t.me/invlives" target="_blank" rel="noopener">@invlives</a>
           </div>
         </div>
         <div class="contact-channel">
@@ -886,6 +1134,7 @@
       <a href="#services">Услуги</a>
       <a href="#route">Этапы</a>
       <a href="#cases">Кейсы</a>
+      <a href="#pricing">Прайс</a>
       <a href="#contact">Контакты</a>
     </div>
     <div class="footer-copy">© 2026 Elbrus Group. Все права защищены.</div>
@@ -898,6 +1147,17 @@
   const navLinks = document.getElementById('navLinks');
   burger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ---------- pricing tabs ----------
+  const priceTabs = document.querySelectorAll('.price-tab');
+  priceTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      priceTabs.forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.price-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
 
   // ---------- scroll reveal ----------
   const revealEls = document.querySelectorAll('.reveal');
@@ -921,8 +1181,8 @@
   //    и найдите там "chat":{"id": ЧИСЛО ...} — это и есть CHAT_ID.
   // 3) Вставьте оба значения ниже.
   // ==========================================================
-  const TELEGRAM_BOT_TOKEN = 'ВАШ_ТОКЕН_БОТА';
-  const TELEGRAM_CHAT_ID = 'ВАШ_CHAT_ID';
+  const TELEGRAM_BOT_TOKEN = '8613366872:AAHKJ0eeLP1-8HQWTOkiPnDs8U9MBVGA5A0';
+  const TELEGRAM_CHAT_ID = '8645253189';
 
   const form = document.getElementById('leadForm');
   const status = document.getElementById('formStatus');
