@@ -576,8 +576,9 @@
   /* ---------- contact ---------- */
   .contact-wrap{
     display:grid;
-    grid-template-columns:0.9fr 1.1fr;
-    gap:64px;
+    grid-template-columns:1fr;
+    max-width:640px;
+    margin:0 auto;
   }
   .contact-info h2{
     font-size:clamp(26px,3.2vw,38px);
@@ -872,7 +873,6 @@
     </nav>
     <div class="nav-cta">
       <a href="#contact" class="btn btn-ghost">Контакты</a>
-      <a href="#contact" class="btn btn-primary">Оставить заявку</a>
       <button class="burger" id="burger" aria-label="Меню">
         <span></span><span></span><span></span>
       </button>
@@ -890,7 +890,6 @@
         <h1>Безупречная репутация — самый быстрый<br>путь к <span>вершине</span></h1>
         <p class="lead">Поднимаем рейтинг бизнеса на Яндекс Картах, 2ГИС и Google Maps — от первого отзыва до устойчивого топа в вашей нише и городе.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Оставить заявку</a>
           <a href="#cases" class="btn btn-ghost">Смотреть кейсы</a>
         </div>
         <div class="hero-stats">
@@ -1141,7 +1140,7 @@
 
       <div class="price-tabs reveal">
         <button class="price-tab active" data-tab="packages">Пакетные предложения</button>
-        <button class="price-tab" data-tab="reviews">Написание отзывов</button>
+        <button class="price-tab" data-tab="reviews">Позитивные отзывы</button>
         <button class="price-tab" data-tab="disputes">Обжалование негатива</button>
         <button class="price-tab" data-tab="ratings">Публикация оценок</button>
         <button class="price-tab" data-tab="setup">Оформление карточек</button>
@@ -1191,7 +1190,7 @@
             <table class="price-table">
               <thead><tr><th>Площадка</th><th>Несогласованный отзыв</th><th>Согласованный отзыв</th></tr></thead>
               <tbody>
-                <tr><td>Яндекс Карты</td><td>1 300 ₽</td><td class="price-cell">1 600 ₽</td></tr>
+                <tr><td>Яндекс Карты</td><td>1 600 ₽</td><td class="price-cell">2 000 ₽</td></tr>
                 <tr><td>2ГИС</td><td>250 ₽</td><td class="price-cell">350 ₽</td></tr>
                 <tr><td>Google Карты</td><td>450 ₽</td><td class="price-cell">850 ₽</td></tr>
                 <tr><td>Сравни.ру</td><td>1 300 ₽</td><td class="price-cell">1 600 ₽</td></tr>
@@ -1325,7 +1324,7 @@
       <div class="contact-info reveal">
         <div class="eyebrow">Контакты</div>
         <h2>Готовы подняться в топ?</h2>
-        <p>Оставьте заявку — разберём вашу карточку на геосервисах и предложим план подъёма рейтинга в течение дня.</p>
+        <p>Свяжитесь с нами в Telegram или по телефону — разберём вашу карточку на геосервисах и предложим план подъёма рейтинга в течение дня.</p>
 
         <div class="contact-channel">
           <div class="icon icon-telegram">
@@ -1366,28 +1365,6 @@
           </div>
         </div>
       </div>
-
-      <form class="card reveal" id="leadForm">
-        <input type="hidden" name="access_key" value="d0be3309-d3ae-4455-bc75-06010a786753">
-        <input type="hidden" name="subject" value="Новая заявка — Elbrus Group">
-        <input type="hidden" name="from_name" value="Сайт elbgroup.ru">
-        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-        <div class="field">
-          <label for="name">Имя</label>
-          <input type="text" id="name" name="name" placeholder="Как к вам обращаться" required>
-        </div>
-        <div class="field">
-          <label for="contact">Telegram или телефон</label>
-          <input type="text" id="contact" name="contact" placeholder="@username или +7..." required>
-        </div>
-        <div class="field">
-          <label for="message">Комментарий</label>
-          <textarea id="message" name="message" placeholder="Какой бизнес, какой геосервис, что важно решить"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary form-submit">Отправить заявку</button>
-        <div class="form-status" id="formStatus"></div>
-        <div class="form-note">Отправляя заявку, вы соглашаетесь на обработку персональных данных</div>
-      </form>
     </div>
 
     <div class="wrap">
@@ -1491,45 +1468,6 @@
     });
   }, {threshold:0.15});
   revealEls.forEach(el => io.observe(el));
-
-  // ==========================================================
-  // ФОРМА ЗАЯВКИ -> EMAIL (через Web3Forms, бесплатно)
-  // Access key публичный, привязан к elbgroup@mail.ru — это нормально,
-  // он не даёт доступа ни к чему, кроме отправки писем на эту почту.
-  // ==========================================================
-  const form = document.getElementById('leadForm');
-  const status = document.getElementById('formStatus');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const submitBtn = form.querySelector('.form-submit');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Отправляем…';
-    status.className = 'form-status';
-    status.textContent = '';
-
-    try {
-      const formData = new FormData(form);
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: formData
-      });
-      const data = await res.json();
-      if (!data.success) throw new Error('web3forms-error');
-
-      status.textContent = 'Заявка отправлена! Мы свяжемся с вами в ближайшее время.';
-      status.classList.add('ok');
-      form.reset();
-    } catch (err) {
-      status.textContent = 'Не удалось отправить автоматически. Напишите нам в Telegram напрямую — ссылка выше.';
-      status.classList.add('err');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Отправить заявку';
-    }
-  });
 </script>
 
 </body>
